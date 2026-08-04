@@ -1,4 +1,5 @@
 import { Form, Head } from '@inertiajs/react';
+import { toast } from 'sonner';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
 import { Button } from '@/components/ui/button';
@@ -22,6 +23,12 @@ export default function ResetPassword({ token, email, passwordRules }: Props) {
                 {...update.form()}
                 transform={(data) => ({ ...data, token, email })}
                 resetOnSuccess={['password', 'password_confirmation']}
+                onSuccess={() => toast.success('Password reset successfully.')}
+                onError={() =>
+                    toast.error(
+                        'Unable to reset password. Please check your details.',
+                    )
+                }
             >
                 {({ processing, errors }) => (
                     <div className="grid gap-6">

@@ -1,5 +1,16 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
+import {
+    BookOpen,
+    ChartNoAxesColumn,
+    Mail,
+    MessageSquareText,
+    FileText,
+    FolderGit2,
+    Images,
+    LayoutGrid,
+    PanelsTopLeft,
+    Settings,
+} from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -13,7 +24,16 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
+import {
+    dashboard,
+    dashboardAnalytics,
+    dashboardComments,
+    dashboardMedia,
+    dashboardMessage,
+    dashboardPages,
+    dashboardPost,
+    dashboardSettings,
+} from '@/routes';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -21,6 +41,41 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Post',
+        href: dashboardPost(),
+        icon: FileText,
+    },
+    {
+        title: 'Pages',
+        href: dashboardPages(),
+        icon: PanelsTopLeft,
+    },
+    {
+        title: 'Media',
+        href: dashboardMedia(),
+        icon: Images,
+    },
+    {
+        title: 'Comments',
+        href: dashboardComments(),
+        icon: MessageSquareText,
+    },
+    {
+        title: 'Message',
+        href: dashboardMessage(),
+        icon: Mail,
+    },
+    {
+        title: 'Analytics',
+        href: dashboardAnalytics(),
+        icon: ChartNoAxesColumn,
+    },
+    {
+        title: 'Settings',
+        href: dashboardSettings(),
+        icon: Settings,
     },
 ];
 

@@ -1,4 +1,5 @@
 import { Form, Head } from '@inertiajs/react';
+import { toast } from 'sonner';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
 import { Button } from '@/components/ui/button';
@@ -11,7 +12,12 @@ export default function ConfirmPassword() {
         <>
             <Head title="Confirm password" />
 
-            <Form {...store.form()} resetOnSuccess={['password']}>
+            <Form
+                {...store.form()}
+                resetOnSuccess={['password']}
+                onSuccess={() => toast.success('Password confirmed.')}
+                onError={() => toast.error('Password confirmation failed.')}
+            >
                 {({ processing, errors }) => (
                     <div className="space-y-6">
                         <div className="grid gap-2">

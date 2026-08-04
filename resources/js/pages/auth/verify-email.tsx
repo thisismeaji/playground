@@ -1,5 +1,6 @@
 // Components
 import { Form, Head } from '@inertiajs/react';
+import { toast } from 'sonner';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
@@ -18,7 +19,14 @@ export default function VerifyEmail({ status }: { status?: string }) {
                 </div>
             )}
 
-            <Form {...send.form()} className="space-y-6 text-center">
+            <Form
+                {...send.form()}
+                onSuccess={() => toast.success('Verification email sent.')}
+                onError={() =>
+                    toast.error('Unable to send verification email.')
+                }
+                className="space-y-6 text-center"
+            >
                 {({ processing }) => (
                     <>
                         <Button disabled={processing} variant="secondary">

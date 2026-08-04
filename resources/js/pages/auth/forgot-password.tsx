@@ -1,6 +1,7 @@
 // Components
 import { Form, Head } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
+import { toast } from 'sonner';
 import InputError from '@/components/input-error';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
@@ -21,7 +22,15 @@ export default function ForgotPassword({ status }: { status?: string }) {
             )}
 
             <div className="space-y-6">
-                <Form {...email.form()}>
+                <Form
+                    {...email.form()}
+                    onSuccess={() => toast.success('Password reset link sent.')}
+                    onError={() =>
+                        toast.error(
+                            'Unable to send reset link. Please check your email.',
+                        )
+                    }
+                >
                     {({ processing, errors }) => (
                         <>
                             <div className="grid gap-2">

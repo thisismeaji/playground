@@ -1,5 +1,6 @@
 import { Link, router } from '@inertiajs/react';
 import { LogOut, Settings } from 'lucide-react';
+import { toast } from 'sonner';
 import {
     DropdownMenuGroup,
     DropdownMenuItem,
@@ -20,6 +21,7 @@ export function UserMenuContent({ user }: Props) {
     const cleanup = useMobileNavigation();
 
     const handleLogout = () => {
+        toast.success('Logged out successfully.');
         cleanup();
         router.flushAll();
     };

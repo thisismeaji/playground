@@ -1,5 +1,6 @@
 import { Form, Head } from '@inertiajs/react';
 import { useRef } from 'react';
+import { toast } from 'sonner';
 import SecurityController from '@/actions/App/Http/Controllers/Settings/SecurityController';
 import Heading from '@/components/heading';
 import InputError from '@/components/input-error';
@@ -41,6 +42,10 @@ export default function Security(props: Props) {
                     ]}
                     resetOnSuccess
                     onError={(errors) => {
+                        toast.error(
+                            'Unable to update password. Please check your details.',
+                        );
+
                         if (errors.password) {
                             passwordInput.current?.focus();
                         }
@@ -49,6 +54,9 @@ export default function Security(props: Props) {
                             currentPasswordInput.current?.focus();
                         }
                     }}
+                    onSuccess={() =>
+                        toast.success('Password updated successfully.')
+                    }
                     className="space-y-6"
                 >
                     {({ errors, processing }) => (

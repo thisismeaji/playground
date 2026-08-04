@@ -1,4 +1,5 @@
 import { Form, Head } from '@inertiajs/react';
+import { toast } from 'sonner';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
@@ -24,6 +25,10 @@ export default function Login({ status, canResetPassword }: Props) {
             <Form
                 {...store.form()}
                 resetOnSuccess={['password']}
+                onSuccess={() => toast.success('Logged in successfully.')}
+                onError={() =>
+                    toast.error('Login failed. Please check your details.')
+                }
                 className="flex flex-col gap-6"
             >
                 {({ processing, errors }) => (

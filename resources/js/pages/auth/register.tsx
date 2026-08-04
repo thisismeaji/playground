@@ -1,4 +1,5 @@
 import { Form, Head } from '@inertiajs/react';
+import { toast } from 'sonner';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
@@ -21,6 +22,12 @@ export default function Register({ passwordRules }: Props) {
                 {...store.form()}
                 resetOnSuccess={['password', 'password_confirmation']}
                 disableWhileProcessing
+                onSuccess={() => toast.success('Account created successfully.')}
+                onError={() =>
+                    toast.error(
+                        'Registration failed. Please check your details.',
+                    )
+                }
                 className="flex flex-col gap-6"
             >
                 {({ processing, errors }) => (
